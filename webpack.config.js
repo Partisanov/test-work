@@ -27,7 +27,7 @@ module.exports = {
     filename: `./js/${filename('js')}`,
     path: path.resolve(__dirname, 'app'),
     clean: true,
-    publicPath: '/test-work/'
+    publicPath: ''
   },
   devServer: {
     historyApiFallback: true,
