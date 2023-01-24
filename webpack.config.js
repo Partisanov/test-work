@@ -24,7 +24,7 @@ module.exports = {
   mode: 'development',
   entry: './js/main.js',
   output: {
-    filename: `./js/${filename('js')}`,
+    filename: `./js/${filename('.js')}`,
     path: path.resolve(__dirname, 'app'),
     clean: true,
     publicPath: ''
@@ -48,7 +48,7 @@ module.exports = {
       }
     }),
     new MiniCssExtractPlugin({
-      filename: `./css/${filename('css')}`
+      filename: `./css/${filename('.css')}`
     }),
     new CopyWebpackPlugin({
       patterns: [
