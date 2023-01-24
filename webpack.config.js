@@ -52,7 +52,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin({
       patterns: [
-        {from: path.resolve(__dirname, 'src/assets') , to: path.resolve(__dirname, 'app')}
+        { from: path.resolve(__dirname, 'src/assets'), to: path.resolve(__dirname, 'app') },
       ]
     }),
   ],
@@ -65,7 +65,14 @@ module.exports = {
       {
         test: /\.(c|sa|sc)ss$/i,
         use: [
-          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+          isDev ? 'style-loader' : {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: (resourcePath, context) => {
+                return path.relative(path.dirname(resourcePath), context) + '/';
+              }
+            }
+          },
           'css-loader',
           {
             loader: 'postcss-loader',
@@ -97,40 +104,40 @@ module.exports = {
         use: isDev
           ? []
           : [
-              {
-                loader: 'image-webpack-loader',
-                options: {
-                  mozjpeg: {
-                    progressive: true,
-                  },
-                  optipng: {
-                    enabled: false,
-                  },
-                  pngquant: {
-                    quality: [0.65, 0.9],
-                    speed: 4,
-                  },
-                  gifsicle: {
-                    interlaced: false,
-                  },
-                  webp: {
-                    quality: 75,
-                  },
+            {
+              loader: 'image-webpack-loader',
+              options: {
+                mozjpeg: {
+                  progressive: true,
+                },
+                optipng: {
+                  enabled: false,
+                },
+                pngquant: {
+                  quality: [0.65, 0.9],
+                  speed: 4,
+                },
+                gifsicle: {
+                  interlaced: false,
+                },
+                webp: {
+                  quality: 75,
                 },
               },
-            ],
+            },
+          ],
         type: 'asset/resource',
         generator: {
           filename: `[path]${filename('[ext]')}`,
         },
       },
       {
-        test: /\.woff2?$/i,
+        test: /\.(?:|woff2?)$/i,
         type: 'asset/resource',
         generator: {
           filename: `fonts/${filename('[ext]')}`,
         },
-      },
+        },
     ]
   }
 };
