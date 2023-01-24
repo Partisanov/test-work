@@ -1,0 +1,60 @@
+/* burger */
+.burger {
+  position: relative;
+  width: 23px;
+  height: 17px;
+  display: none;
+  outline: none;
+  &__span{
+    position: absolute;
+    display: inline-block;
+    top: 7px;
+    left: 0;
+    width: 23px;
+    height: 3px;
+    background: var(--brow);
+    transition: background var(--short) ease;
+  }
+  &::after,
+  &::before {
+    content: '';
+    left: 0;
+    position: absolute;
+    height: 3px;
+    background: var(--brow);
+    transition: background var(--short) ease;
+  }
+  &::after{
+    top: 0;
+    width: 23px;
+  }
+  &::before{
+    bottom: 0;
+    width: 23px;
+  }
+  &-active.burger::after {
+    width: 23px;
+    top: 50%;
+    transform: rotate(-45deg) translate(0px, -50%);
+  }
+  &-active.burger::before {
+    width: 23px;
+    bottom: 50%;
+    transform: rotate(45deg) translate(0px, 50%);
+  }
+  &:hover &__span,
+  &:hover::after,
+  &:hover::before {
+    background: var(--red);
+  }
+  &-active &__span {
+    opacity: 0;
+  }
+}
+
+@media(max-width: 905px) {
+  .burger {
+    display: block;
+    margin-right: 15px;
+  }
+}

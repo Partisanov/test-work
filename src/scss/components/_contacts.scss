@@ -1,0 +1,37 @@
+.contacts{
+  &__title {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--brow);
+    text-transform: uppercase;
+  }
+  &__desc {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 36px;
+    font-weight: 500;
+    color: var(--red);
+  }
+  &__copirate {
+    font-size: 12px;
+    color: var(--brow);
+  }
+
+}
+
+@media(max-width: 870px) {
+  .contacts{
+    &__title {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    &__desc {
+      margin-bottom: 0;
+    }
+    &__copirate {
+      display: none;
+    }
+  }
+}
